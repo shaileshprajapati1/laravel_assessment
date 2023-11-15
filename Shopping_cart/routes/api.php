@@ -19,4 +19,6 @@ use Illuminate\Support\Facades\Route;
 // });
 
 //signup
-Route::any('register', [App\Http\Controllers\auth\AuthController::class, 'index']);
+Route::post('register', [App\Http\Controllers\auth\AuthController::class, 'index']);
+Route::post('login', [App\Http\Controllers\auth\AuthController::class, 'create']);
+

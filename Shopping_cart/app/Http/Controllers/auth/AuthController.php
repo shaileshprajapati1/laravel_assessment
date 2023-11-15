@@ -6,38 +6,59 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\AuthUser;
 use Validator;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class AuthController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request, AuthUser $user)
+    public function index(Request $request, AuthUser $users)
     {
-        $rules = [
-            'username' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'unique:users', 'email'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ];
-        $validator = Validator::make($request->all(), $rules);
+        $validatedData = $request->validate([
+            'username' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:8',
+        ]);
 
-        if ($validator->fails()) {
-            return response()->withErrors($validator)->withInput($request->except('password'));
-        } else {
-            $user->username = $request->username;
-            $user->email = $request->email;
-            $user->password = bcrypt($request->password);
-            $user->save();
-            return true;
-        }
+        $user = AuthUser::create([
+            'username' => $validatedData['username'],
+            'email' => $validatedData['email'],
+            'password' => bcrypt($validatedData['password']),
+        ]);
+
+        // $token = $user->createToken('authToken')->accessToken;
+
+        return true;
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request, AuthUser $users)
     {
-        //
+        $credentials = $request->only('email', 'password');
+
+        if (Auth::attempt($credentials)) {
+            if (Auth::user()->role == 1) {
+                $user = Auth::user();
+                return $user;
+            } else {
+                $user = Auth::user();
+                // $token = $user->createToken('authToken')->accessToken;
+
+                return true;
+            }
+        } else {
+            return response()->json(['error' => 'Unauthenticated'], 401);
+        }
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        return redirect('/');
     }
 
     /**
