@@ -17,6 +17,8 @@
 
     <!-- Custom styles for this template-->
     <link href="{{ url('admin/css/sb-admin-2.min.css') }}" rel="stylesheet">
+    <script script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.js"></script>
 
 </head>
 
@@ -335,9 +337,8 @@
         <script src="{{ url('admin/js/demo/chart-area-demo.js') }}"></script>
         <script src="{{ url('admin/js/demo/chart-pie-demo.js') }}"></script>
 
-        
-        <script script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-        <script script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.js"></script>
+
+
 
 
 </body>

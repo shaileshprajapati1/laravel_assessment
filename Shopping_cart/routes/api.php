@@ -22,3 +22,10 @@ use Illuminate\Support\Facades\Route;
 Route::post('register', [App\Http\Controllers\auth\AuthController::class, 'index']);
 Route::post('login', [App\Http\Controllers\auth\AuthController::class, 'create']);
 
+Route::prefix("admin")->group(function(){
+Route::post('/product', [App\Http\Controllers\ProductController::class, 'store']);
+Route::post('/uploadimage', [App\Http\Controllers\ProductController::class, 'uploadimage']);
+Route::get('/viewall', [App\Http\Controllers\ProductController::class, 'index']);
+Route::get('/editproduct', [App\Http\Controllers\ProductController::class, 'show']);
+
+});

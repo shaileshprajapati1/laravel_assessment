@@ -12,7 +12,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $res = Product::all();
+        return  $res;
     }
 
     /**
@@ -26,17 +27,32 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, Product $product)
     {
-        //
+        $product->name = $request->name;
+        $product->price = $request->price;
+        $product->category = $request->category;
+        $product->description = $request->description;
+        $product->gallery = $request->image;
+        $product->save();
+        return true;
     }
 
+
+    public function uploadimage(Request $request, Product $product)
+    {
+        $uploadimage = time() . '.' . $request->gallery->getClientOriginalExtension();
+        $request->gallery->move(public_path('/uploads'), $uploadimage);
+
+        return json_encode($uploadimage);
+    }
     /**
      * Display the specified resource.
      */
     public function show(Product $product)
     {
-        //
+        $res = Product::find($id);
+        return $res;
     }
 
     /**

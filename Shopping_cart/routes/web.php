@@ -19,7 +19,4 @@ Route::view('/home', 'homepage')->middleware('auth.session');
 
 Route::view('/admindashboard', 'admin.admindashboard')->middleware('auth.session');
 Route::view('/viewall', 'admin.viewallproducts')->middleware('auth.session');
-Route::view('/addprod', 'admin.addproduct')->middleware('auth.session');
-Route::post("logout",[\App\Http\Controllers\auth\AuthController::class,'logout']);
-
-
+Route::post("logout", [\App\Http\Controllers\auth\AuthController::class, 'logout']);
