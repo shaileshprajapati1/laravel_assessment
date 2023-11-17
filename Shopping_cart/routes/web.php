@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::view('/', 'register_login');
 Route::view('/home', 'homepage')->middleware('auth.session');
 
-Route::view('/admin', 'admin.admindashboard')->middleware('auth.session');
+Route::view('/admindashboard', 'admin.admindashboard')->middleware('auth.session');
 Route::post("logout",[\App\Http\Controllers\auth\AuthController::class,'logout']);
 
 

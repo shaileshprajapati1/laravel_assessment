@@ -6,7 +6,6 @@
     <link rel="stylesheet" type="text/css" href="slide navbar style.css">
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
     <link href="{{ url('register/style.css') }}" rel="stylesheet">
-    <link href="{{ url('api/js/api.js') }}" rel="stylesheet">
 
 </head>
 
@@ -108,9 +107,8 @@
                 // console.log(result.role);
                 if (result.role == 1) {
                     alert("Login Success");
-                    window.location.href = '/admin'
-                }
-                else if(result > 0) {
+                    window.location.href = '/admindashboard'
+                } else if (result > 0) {
                     alert("Login Success");
                     window.location.href = '/home'
                 } else {
